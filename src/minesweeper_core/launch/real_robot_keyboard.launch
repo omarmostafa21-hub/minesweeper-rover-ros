@@ -1,0 +1,16 @@
+<launch>
+  <!-- 1. ربط السيريال مع الأردوينو ميجا على البود ريت 57600 -->
+  <node pkg="rosserial_python" type="serial_node.py" name="arduino_serial" output="screen">
+    <param name="port" value="/dev/ttyACM0"/>
+    <param name="baud" value="57600"/>
+  </node>
+
+  <!-- 2. عقدة حساب المسار والموقع من الـ 6 إنكودرز والـ IMU الحقيقي -->
+  <node pkg="minesweeper_core" type="odometry_node.py" name="odometry_node" output="screen"/>
+
+  <!-- 3. عقدة تسجيل الألغام وإصدار التقارير -->
+  <node pkg="minesweeper_core" type="grid_map_node.py" name="grid_map_node" output="screen"/>
+
+  <!-- 4. واجهة الخريطة التفاعلية الحية 19x19 -->
+  <node pkg="minesweeper_core" type="live_grid_map_gui.py" name="live_grid_map_gui" output="screen"/>
+</launch>

@@ -1,0 +1,18 @@
+<launch>
+  <!-- 1. عقدة حساب المسار وموقع الروبوت (Odometry & IMU) -->
+  <node pkg="minesweeper_core" type="odometry_node.py" name="odometry_node" output="screen"/>
+
+  <!-- 2. عقدة تسجيل الألغام وإصدار التقارير -->
+  <node pkg="minesweeper_core" type="grid_map_node.py" name="grid_map_node" output="screen"/>
+
+  <!-- 3. واجهة عرض الخريطة الحية 19x19 ومسار الروبوت -->
+  <node pkg="minesweeper_core" type="live_grid_map_gui.py" name="live_grid_map_gui" output="screen"/>
+
+  <!-- 4. تفعيل منفذ الأردوينو الحقيقي (اختياري عند توصيل الكابل) -->
+  <!--
+  <node pkg="rosserial_python" type="serial_node.py" name="arduino_serial" output="screen">
+    <param name="port" value="/dev/ttyACM0"/>
+    <param name="baud" value="57600"/>
+  </node>
+  -->
+</launch>

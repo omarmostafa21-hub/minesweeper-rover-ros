@@ -1,0 +1,13 @@
+<launch>
+  <node name="ps4_receiver" pkg="minesweeper_core" type="ps4_bridge_receiver.py" output="screen" />
+
+  <node name="wheel_odometry" pkg="minesweeper_core" type="wheel_odometry.py" output="screen">
+    <param name="wheel_track" value="0.52" />
+    <param name="wheel_diameter" value="0.10" />
+    <param name="ticks_per_rev" value="456.0" />
+  </node>
+
+  <node name="arena_gui" pkg="minesweeper_core" type="arena_gui.py" output="screen">
+    <param name="cell_size" value="1.0" />
+  </node>
+</launch>

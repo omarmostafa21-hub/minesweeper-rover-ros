@@ -1,0 +1,14 @@
+<launch>
+  <!-- 1. جسر استقبال أوامر دراع الـ PS4 -->
+  <node name="ps4_receiver" pkg="minesweeper_core" type="ps4_bridge_receiver.py" output="screen" />
+
+  <!-- 2. حساب الأودومتري وبث tf -->
+  <node name="wheel_odometry" pkg="minesweeper_core" type="wheel_odometry.py" output="screen">
+    <param name="wheel_track" value="0.45" />
+    <param name="wheel_diameter" value="0.12" />
+    <param name="ticks_per_rev" value="1900.0" />
+  </node>
+
+  <!-- 3. تشغيل RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find minesweeper_core)/rviz/odom_view.rviz" required="false" />
+</launch>
